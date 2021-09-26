@@ -1,2 +1,66 @@
 @charset "utf-8";
 @import "~bulma/bulma";
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 1rem;
+  grid-column-gap: 1em;
+}
+
+.navbar-section {
+  padding-bottom: 0;
+  padding-top: 0;
+
+  .navbar-item:first-child {
+    padding-left: 0;
+  }
+
+  .homeBtn {
+    cursor: pointer;
+  }
+}
+
+.page {
+  display: none;
+}
+
+.page.visible {
+  display: block;
+}
+
+.is-right {
+  text-align: right;
+}
+
+#product {
+  .avg-stars {
+    font-weight: 400;
+  }
+  .review-stars {
+    font-weight: 500;
+  }
+  .new-rating-form {
+    .rating-star {
+      direction: rtl;
+      input {
+        display: none;
+      }
+      input:checked ~ label,
+      input:checked ~ label ~ label,
+      input ~ label:hover,
+      input ~ label:hover ~ label {
+        color: #ffe400;
+        cursor: pointer;
+      }
+    }
+  }
+  .rating-star label,
+  .star.icon {
+    color: #cecece;
+  }
+  .star.icon.checked {
+    color: #ffe400;
+  }
+}
