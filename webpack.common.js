@@ -11,16 +11,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
-  devtool: "inline-source-map",
-  devServer: {
-    static: path.resolve(__dirname, "dist"),
-    hot: true
-  },
-  resolve: {
-    alias: {
-      handlebars: "handlebars/dist/handlebars.min.js",
-    },
-  },
   module: {
     rules: [
       {

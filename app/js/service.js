@@ -1,4 +1,4 @@
-const host = "http://localhost:8080";
+const host = "https://reviewfier.herokuapp.com";
 
 export class ProductService {
   static getAllProducts(req) {
