@@ -11,6 +11,7 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
     "@fortawesome/fontawesome-free": "^5.15.4",
     "babel-loader": "^8.2.2",
     "bulma": "^0.9.3",
@@ -28,6 +29,8 @@
   },
   "dependencies": {
     "css-minimizer-webpack-plugin": "^3.0.2",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

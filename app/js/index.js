@@ -4,7 +4,7 @@ import '@fortawesome/fontawesome-free/js/regular'
 import '@fortawesome/fontawesome-free/js/brands'
 import style from "../scss/style.scss";
 import { Router } from "./router";
-
+import * as ReactComponents from "../react";
 
 $(function () {
   Router.renderPage();
