@@ -1,7 +1,7 @@
-import {Header} from "./header";
-import {ProductList} from "./productList";
+import {Header} from "./components/header";
+import {HomePage} from "./pages/home";
 
 export default {
   Header,
-  ProductList
+  HomePage
 }

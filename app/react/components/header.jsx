@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { goToHomePage } from "../js/router";
+import { goToHomePage } from "../../js/router";
 
 export const Header = () => (
   <section className="section navbar-section">
