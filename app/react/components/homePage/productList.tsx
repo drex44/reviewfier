@@ -8,7 +8,7 @@ export const ProductList = () => {
     ProductService.getAllProducts({ page: 0, pageSize: 0 }).then(setProducts);
   }, []);
 
-  const openProductPage = (id) => {
+  const openProductPage = (id: string) => {
     window.location.hash = "product/" + id;
   };
 

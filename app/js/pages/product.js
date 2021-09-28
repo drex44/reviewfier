@@ -1,37 +1,35 @@
 import { showPage } from "./pageUtils";
 import { ProductService } from "../service";
-import { productInfoHTML } from "../components/productInformation";
 import { allReviewsHTML } from "../components/productReview";
 import { getFormData } from "../formUtils";
+import { renderProductInfo } from "../../react/components/productPage/productInfo";
 
 export function renderProductPage() {
   showPage('product');
   const url = window.location.hash;
   var id = url.split("/")[1];
-  Promise.all([
-    ProductService.getProduct(id),
-    ProductService.getAllRatings(id)
-  ]).then(resp => generateProductsHTML(resp[0], resp[1]));
+  
+  renderProductInfo(id);
+  ProductService.getAllRatings(id).then(resp => generateProductReviewsHTML(id, resp));
 }
 
 const submitButtonSelector = '#product #new-rating-submit-btn';
 const formSelector = '#product #new-rating-form';
 
-function generateProductsHTML(product, reviews = []) {
-  const productHTML = productInfoHTML(product);
+function generateProductReviewsHTML(productId, reviews = []) {
   const reviewsHTML = allReviewsHTML(reviews);
-  $("#product .content").empty();
-  $("#product .content").append(productHTML + reviewsHTML);
+  $("#product #reviews").empty();
+  $("#product #reviews").append(reviewsHTML);
 
-  initializeEventHandlers(product);
+  initializeEventHandlers(productId);
 }
 
-function initializeEventHandlers(product) {
+function initializeEventHandlers(productId) {
   $("#product .new-review-btn").off().on("click", function (e) {
     e.preventDefault();
     e.stopPropagation();
     $(formSelector).trigger("reset");
-    $(`${formSelector} #product-id`).val(product.id);
+    $(`${formSelector} #product-id`).val(productId);
     openNewReviewModal();
   });
   $("#product #new-rating-close-btn").off().on("click", function (e) {
