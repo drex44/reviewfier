@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ProductList } from "../components/productList";
+import { ProductList } from "../components/homePage/productList";
 
 export const HomePage = () => {
   return (
