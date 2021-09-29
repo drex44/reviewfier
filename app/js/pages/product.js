@@ -1,7 +1,7 @@
 import { showPage } from "./pageUtils";
 import { ProductService } from "../service";
 import { productInfoHTML } from "../components/productInformation";
-import { allReviewsHTML } from "../components/productReview";
+import { renderProductRatings } from "../../react/components/productPage/productRatings";
 import { getFormData } from "../formUtils";
 
 export function renderProductPage() {
@@ -19,9 +19,9 @@ const formSelector = '#product #new-rating-form';
 
 function generateProductsHTML(product, reviews = []) {
   const productHTML = productInfoHTML(product);
-  const reviewsHTML = allReviewsHTML(reviews);
-  $("#product .content").empty();
-  $("#product .content").append(productHTML + reviewsHTML);
+  $("#product .product-info").empty();
+  $("#product .product-info").append(productHTML);
+  renderProductRatings(reviews);
 
   initializeEventHandlers(product);
 }
@@ -40,17 +40,31 @@ function initializeEventHandlers(product) {
     closeNewReviewModal();
   });
 
+  $("#product #new-rating-form #review-textarea").off().keypress(function(e) {
+    // enter keypress
+    if (e.keyCode === 13) {
+      submitNewRating();
+    } 
+  });
+
   $(submitButtonSelector).off().on("click", function(event) {
     event.preventDefault();
     event.stopPropagation();
-    addLoading(submitButtonSelector);
-    const newRating = getFormData(formSelector);
-    ProductService.addNewRating(newRating).then(function(resp) {
-      $("#page_navigation1").attr("id","page_navigation1");
-      removeLoading(submitButtonSelector);
+    submitNewRating();
+  });
+}
+
+function submitNewRating() {
+  addLoading(submitButtonSelector);
+  const newRating = getFormData(formSelector);
+  ProductService.addNewRating(newRating).then(function(resp) {
+    if (resp) {
       closeNewReviewModal();
       renderProductPage();
-    });
+    } else {
+      showError("Error while adding a new rating. Copy your review for now and please try again later.");
+    }
+    removeLoading(submitButtonSelector);
   });
 }
 
