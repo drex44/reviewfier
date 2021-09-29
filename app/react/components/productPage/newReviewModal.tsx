@@ -36,6 +36,12 @@ export const NewReviewModal = (props: NewReviewModalProps) => {
     setStars(Number(event.target.value));
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter") {
+      submit();
+    }
+  }
+
   useEffect(() => {
     setReview("");
     setStars(0);
@@ -75,7 +81,8 @@ export const NewReviewModal = (props: NewReviewModalProps) => {
                   className="textarea"
                   name="review"
                   placeholder="Start typing..."
-                  onChange={(event) => setReview(event.target.value)}
+                  onChange={event => setReview(event.target.value)}
+                  onKeyPress={handleKeyPress}
                 ></textarea>
               </div>
             </div>

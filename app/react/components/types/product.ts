@@ -4,3 +4,10 @@ export type Product = {
   description: string;
   avgStars: number;
 };
+
+export type Rating = {
+  id: string;
+  tsProductId: string;
+  review: string;
+  stars: number;
+}

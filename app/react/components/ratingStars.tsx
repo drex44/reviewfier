@@ -11,7 +11,7 @@ export const RatingStars = (props: RatingStarsProps) => {
 
 interface RatingStarsProps {
   stars: number,
-  text: string
+  text?: string
 }
 
 const Star = (props: StarProps) => {
