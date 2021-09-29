@@ -2,9 +2,9 @@ const devMode = process.env.NODE_ENV !== "production";
 
 let host = "https://reviewfier.herokuapp.com";
 
-if (devMode) {
-  host = "https://localhost:8080";
-}
+// if (devMode) {
+//   host = "https://localhost:8080";
+// }
 
 export class ProductService {
   static getAllProducts(req) {
