@@ -12,7 +12,10 @@ module.exports = {
     clean: true,
   },
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+    fallback: {
+      net: false
+    }
   },
   module: {
     rules: [
@@ -44,11 +47,11 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: ["babel-loader"],
       },
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: "ts-loader",
         exclude: /node_modules/,
       },
     ],

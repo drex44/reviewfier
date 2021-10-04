@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
-import { ProductService } from "../../../js/service";
-import { Product } from "../types/product";
+import { ProductService } from "../../../service/productService";
+import { ProductDto } from "../types/product";
 
 export const useProduct = (productId: string) => {
-  const [product, setProduct] = useState<Product>(null);
+  const [product, setProduct] = useState<ProductDto>(null);
 
   useEffect(() => {
     if (productId) {
-      ProductService.getProduct(productId).then((resp) => {
+      ProductService.subscribeProduct(productId, (resp: ProductDto) => {
         if (resp) {
           setProduct(resp);
         }
       });
     }
+
     return () => setProduct(null);
   }, [productId]);
 

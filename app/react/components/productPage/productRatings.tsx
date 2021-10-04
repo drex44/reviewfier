@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
-import { ProductService } from "../../../js/service";
+import { ProductService } from "../../../service/productService";
 import { RatingStars } from "../ratingStars";
-import { Rating } from "../types/product";
+import { RatingDto, WSUpdate } from "../types/product";
 
 const ProductReviews = (props: ProductReviewsProps) => {
-  const { ratings = [] } = props;
+
+  const [ratings, setRatings] = useState([]);
+  const ratingsRef = useRef(ratings);
+
+  useEffect(() => {
+    ratingsRef.current = [];
+    setRatings([]);
+    ProductService.subscribeRatings(props.productId, (resp: WSUpdate<RatingDto>) => {
+      const newRatings: {[id: string]: RatingDto} = {};
+      ratingsRef.current.forEach((rating: RatingDto) => {
+        newRatings[rating.id] = rating;
+      });
+      resp.additions.forEach(rating => {
+        newRatings[rating.id] = rating;
+      })
+      resp.updates.forEach(rating => {
+        newRatings[rating.id] = rating;
+      })
+      resp.deletes.forEach(rating => {
+        delete newRatings[rating.id];
+      })
+      ratingsRef.current = Object.values(newRatings);
+      setRatings(Object.values(newRatings));
+    });
+  }, [props.productId]);
+
   return (
     <div className="product-reviews">
       {ratings.map((rating) => (
-        <div className="review level">
+        <div className="review level" key={rating.id}>
           <div className="level-left">
             <div className="level-item">
               <RatingStars stars={Number(rating.stars)} />
@@ -26,17 +51,15 @@ const ProductReviews = (props: ProductReviewsProps) => {
 };
 
 interface ProductReviewsProps {
-  ratings: Rating[];
+  productId: string;
 }
 
 export const renderProductRatings = (id: string) => {
   // need to call this from outside to trigger force re-render
-  ProductService.getAllRatings(id).then((resp: Rating[]) => {
-    if (resp) {
-      ReactDOM.render(
-        <ProductReviews ratings={resp} />,
-        document.getElementById("reviews")
-      );
-    }
-  });
+  if (id) {
+    ReactDOM.render(
+      <ProductReviews productId={id} />,
+      document.getElementById("reviews")
+    );
+  }
 };
