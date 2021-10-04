@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { ProductService } from "../../../js/service";
-import { Product } from "../types/product";
+import { ProductService } from "../../../service/productService";
+import { ProductDto } from "../types/product";
 
 export const ProductList = () => {
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState<ProductDto[]>([]);
 
   useEffect(() => {
     ProductService.getAllProducts({ page: 0, pageSize: 0 }).then(setProducts);

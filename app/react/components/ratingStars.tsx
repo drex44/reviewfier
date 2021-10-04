@@ -4,7 +4,7 @@ import cn from "classnames";
 export const RatingStars = (props: RatingStarsProps) => {
   return <span className="icon-text rating-star">
       <span>{props.text}</span>
-      {new Array(5).fill(0).map((_, i)=><Star checked={i<props.stars} />)}
+      {new Array(5).fill(0).map((_, i)=><Star key={i} checked={i<props.stars} />)}
     </span>
   ;
 }

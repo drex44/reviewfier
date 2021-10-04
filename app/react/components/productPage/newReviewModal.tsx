@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
-import { ProductService } from "../../../js/service";
+import { ProductService } from "../../../service/productService";
 import { showError } from "../../utils/commonUtils";
 import { renderProductPage } from "../../../js/pages/product";
 
@@ -11,13 +11,12 @@ export const NewReviewModal = (props: NewReviewModalProps) => {
   const [stars, setStars] = useState<number>(0);
 
   const submit = () => {
-    setLoading(true);
     if ((stars === 0 && review) || stars > 0) {
+      setLoading(true);
       ProductService.addNewRating({ review, productId: props.productId, stars })
         .then((resp) => {
           if (resp.id) {
             props.closeModal();
-            renderProductPage();
           } else {
             showError("Error adding new review. Please try again later.");
           }
@@ -65,6 +64,7 @@ export const NewReviewModal = (props: NewReviewModalProps) => {
                         checked={stars === value}
                         value={value}
                         onChange={onStarsChange}
+                        key={value}
                       />
                     );
                   })}
@@ -85,6 +85,7 @@ export const NewReviewModal = (props: NewReviewModalProps) => {
                   onKeyPress={handleKeyPress}
                 ></textarea>
               </div>
+              <p className="help"><em>* Press Enter to submit.</em></p>
             </div>
 
             <div className="actions has-text-centered field is-grouped">
