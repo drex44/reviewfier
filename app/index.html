@@ -11,76 +11,20 @@
 <body>
 	<div class="container">
 
-		<section class="section navbar-section">
-			<nav class="navbar" role="navigation" aria-label="main navigation">
-				<p class="navbar-item subtitle is-1 homeBtn">
-					<strong>Reviewfier</strong>
-				</p>
-				<p class="navbar-item subtitle is-2">
-					<span class="subtitle is-4">Find reviews for any product!</span>
-				</p>
-			</nav>
-		</section>
+		<!-- header.jsx -->
+		<div id="header"></div>
 
 		<div class="main-content">
 
-			<section class="section page" id="home">
-				<div class="product-list">
-				</div>
-			</section>
+			<!-- pages/home.jsx -->
+			<div id="home-page"></div>
 
 			<section class="section page" id="product">
-				<div class="content">
+				<div id="product-info">
 				</div>
-				<div class="modal new-rating-form">
-					<div class="modal-background"></div>
-					<div class="modal-content">
-						<div class="box">
-							<p class="title">What's your rating?</p>
-							<form class="is-full-mobile is-half-tablet is-three-fifths" id="new-rating-form" onsubmit="return false;">
-								<div class="field">
-									<label class="label">Rating</label>
-									<div class="control">
-										<span class="icon-text rating-star">
-											<input type="hidden" name="productId" id="product-id" value="" />
-											<input type="radio" name="stars" id="rating-1" value="5" />
-											<label for="rating-1" class="icon editable">
-												<i class="fas fa-star"></i>
-											</label>
-											<input type="radio" name="stars" id="rating-2" value="4" />
-											<label for="rating-2" class="icon editable">
-												<i class="fas fa-star"></i>
-											</label>
-											<input type="radio" name="stars" id="rating-3" value="3" />
-											<label for="rating-3" class="icon editable">
-												<i class="fas fa-star"></i>
-											</label>
-											<input type="radio" name="stars" id="rating-4" value="2" />
-											<label for="rating-4" class="icon editable">
-												<i class="fas fa-star"></i>
-											</label>
-											<input type="radio" name="stars" id="rating-5" value="1" />
-											<label for="rating-5" class="icon editable">
-												<i class="fas fa-star"></i>
-											</label>
-										</span>
-									</div>
-								</div>
-
-								<div class="field">
-									<label class="label">Review</label>
-									<div class="control">
-										<textarea maxlength="350" class="textarea" name="review" placeholder="Start typing..."></textarea>
-									</div>
-								</div>
-
-								<div class="actions block has-text-centered">
-									<button class="button" id="new-rating-close-btn">Cancel</button>
-									<button class="button is-primary" id="new-rating-submit-btn">Submit Review</button>
-								</div>
-							</form>
-						</div>
-					</div>
+				<div id="reviews">
+				</div>
+				<div id="new-rating-form">
 				</div>
 			</section>
 

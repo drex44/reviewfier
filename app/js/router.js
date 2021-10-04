@@ -1,5 +1,5 @@
 import { renderErrorPage } from "./pages/error";
-import { renderHomePage } from "./pages/home";
+import { showPage } from "./pages/pageUtils";
 import { renderProductPage } from "./pages/product";
 
 export function renderPage() {
@@ -38,9 +38,14 @@ export class Router {
 
   static getRoutes() {
     return {
-      '': renderHomePage,
+      '': goToHomePage,
       '#product': renderProductPage,
       '#error': renderErrorPage,
     }
   }
+}
+
+export function goToHomePage() {
+  window.location.hash = "";
+  showPage("home");
 }

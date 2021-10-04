@@ -11,6 +11,12 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
+  resolve: {
+    extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+    fallback: {
+      net: false
+    }
+  },
   module: {
     rules: [
       {
@@ -37,6 +43,16 @@ module.exports = {
             presets: ["@babel/preset-env"],
           },
         },
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"],
+      },
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
     ],
   },

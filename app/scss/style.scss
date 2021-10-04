@@ -55,6 +55,9 @@
         cursor: pointer;
       }
     }
+    .actions {
+      justify-content: center;
+    }
   }
   .rating-star label,
   .star.icon {
@@ -62,5 +65,14 @@
   }
   .star.icon.checked {
     color: #ffe400;
+  }
+  .product-reviews {
+    .review {
+      margin-bottom: 0;
+
+      .review-stars {
+        margin-right: 0.5rem;
+      }
+    }
   }
 }
