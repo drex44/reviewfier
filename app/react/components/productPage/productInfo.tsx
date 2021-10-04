@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { parseStarNumber } from "../../utils/commonUtils";
 import { RatingStars } from "../ratingStars";
 import { NewReviewModal } from "./newReviewModal";
 import { useProduct } from "./useProduct";
@@ -12,7 +13,7 @@ export const ProductInfo = (props: ProductInfoProps) => {
     return null;
   }
 
-  const fixedStars = parseFloat(String(product.avgStars)).toFixed(2);
+  const fixedStars = parseStarNumber(product.avgStars);
 
   const openNewReviewModalVisible = () => {
     setNewReviewModalVisible(true);
@@ -28,7 +29,7 @@ export const ProductInfo = (props: ProductInfoProps) => {
       <div className="columns is-vcentered">
         <div className="column is-four-fifths">
           <span className="title avg-stars">
-            <RatingStars stars={Number(fixedStars)} text={fixedStars} />
+            <RatingStars stars={Number(fixedStars)} leftText={fixedStars} />
           </span>
         </div>
         <div className="column is-right">

@@ -3,15 +3,17 @@ import cn from "classnames";
 
 export const RatingStars = (props: RatingStarsProps) => {
   return <span className="icon-text rating-star">
-      <span>{props.text}</span>
+      {props.leftText && <span>{props.leftText}</span>}
       {new Array(5).fill(0).map((_, i)=><Star key={i} checked={i<props.stars} />)}
+      {props.rightText && <span>{props.rightText}</span>}
     </span>
   ;
 }
 
 interface RatingStarsProps {
   stars: number,
-  text?: string
+  leftText?: string,
+  rightText?: string
 }
 
 const Star = (props: StarProps) => {

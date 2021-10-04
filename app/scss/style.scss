@@ -59,13 +59,6 @@
       justify-content: center;
     }
   }
-  .rating-star label,
-  .star.icon {
-    color: #cecece;
-  }
-  .star.icon.checked {
-    color: #ffe400;
-  }
   .product-reviews {
     .review {
       margin-bottom: 0;
@@ -75,4 +68,15 @@
       }
     }
   }
+}
+
+.rating-star label,
+.star.icon {
+  color: #cecece;
+}
+.rating-star .icon.checked {
+  color: #ffe400;
+}
+.rating-star .icon {
+  width: auto;
 }
