@@ -12,8 +12,6 @@ export const ProductInfo = (props: ProductInfoProps) => {
     return null;
   }
 
-  const fixedStars = parseFloat(String(product.avgStars)).toFixed(2);
-
   const openNewReviewModalVisible = () => {
     setNewReviewModalVisible(true);
   };
@@ -28,7 +26,7 @@ export const ProductInfo = (props: ProductInfoProps) => {
       <div className="columns is-vcentered">
         <div className="column is-four-fifths">
           <span className="title avg-stars">
-            <RatingStars stars={Number(fixedStars)} text={fixedStars} />
+            <RatingStars stars={product.avgStars} leftText={product.avgStars} />
           </span>
         </div>
         <div className="column is-right">
