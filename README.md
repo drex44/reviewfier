@@ -1,8 +1,11 @@
-# reviewfier
-Sample jquery webpack bulma SPA
+# Reviewfier
+Sample jquery webpack bulma SPA. Later converted into a react project component by component.
 
+## Backend
+https://github.com/drex44/rating-badge
+
+## Deployed on vercel
 https://reviewfier.vercel.app
-
 
 ## Todo
 - Should have added avg stars in home from the beginning.

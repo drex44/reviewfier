@@ -4,11 +4,11 @@ import cn from "classnames";
 export const RatingStars = (props: RatingStarsProps) => {
   return (
     <span className="icon-text rating-star">
-      {props.leftText != null && <span>{props.leftText}</span>}
+      {props.leftText != null && <span className="leftText">{props.leftText}</span>}
       {new Array(5).fill(0).map((_, i) => (
         <Star key={i} checked={i < props.stars} />
       ))}
-      {props.rightText != null && <span>{props.rightText}</span>}
+      {props.rightText != null && <span className="rightText">{props.rightText}</span>}
     </span>
   );
 };
