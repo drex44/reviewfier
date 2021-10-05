@@ -37,7 +37,7 @@ const ProductReviews = (props: ProductReviewsProps) => {
         <div className="review level" key={rating.id}>
           <div className="level-left">
             <div className="level-item">
-              <RatingStars stars={Number(rating.stars)} />
+              <RatingStars stars={rating.stars} />
             </div>
             <div className="level-item review-stars">
               <strong>{rating.stars}</strong>

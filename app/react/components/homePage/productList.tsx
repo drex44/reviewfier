@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ProductService } from "../../../service/productService";
+import { RatingStars } from "../ratingStars";
 import { ProductDto } from "../types/product";
 
 export const ProductList = () => {
@@ -18,7 +19,14 @@ export const ProductList = () => {
       {products.map((product) => (
         <div className="card product-details" key={product.id}>
           <div className="card-content">
-            <p className="title">{product.name}</p>
+            <div className="media">
+              <div className="media-content">
+                <p className="title is-4">{product.name}</p>
+                <p className="subtitle is-6">
+                  <RatingStars stars={product.avgStars} leftText={product.avgStars} />
+                </p>
+              </div>
+            </div>
             <div className="content">{product.description}</div>
           </div>
           <footer className="card-footer">
