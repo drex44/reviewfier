@@ -33,6 +33,7 @@ const ProductReviews = (props: ProductReviewsProps) => {
 
   return (
     <div className="product-reviews">
+      <h3 className="title is-4">Reviews</h3>
       {ratings.map((rating) => (
         <div className="review level" key={rating.id}>
           <div className="level-left">
@@ -40,9 +41,9 @@ const ProductReviews = (props: ProductReviewsProps) => {
               <RatingStars stars={rating.stars} />
             </div>
             <div className="level-item review-stars">
-              <strong>{rating.stars}</strong>
+              <strong>{rating.stars}</strong>, {rating.review}
             </div>
-            <div className="level-item">{rating.review}</div>
+            <div className="level-item"></div>
           </div>
         </div>
       ))}

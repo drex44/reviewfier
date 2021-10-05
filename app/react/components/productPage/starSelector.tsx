@@ -23,6 +23,7 @@ export const StarSelector = (props: StarSelectorProps) => {
   for (let i = 1; i <= 10; i++) {
     stars.push(
       <Star
+        key={i}
         checked={rating >= i && rating !== null}
         style={{}}
         onMouseOver={() => handleMouseover(i)}
