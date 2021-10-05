@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { ProductService } from "../../../service/productService";
 import { showError } from "../../utils/commonUtils";
-import { renderProductPage } from "../../../js/pages/product";
+import { StarSelector } from "./starSelector";
 
 export const NewReviewModal = (props: NewReviewModalProps) => {
   const { visible } = props;
@@ -31,23 +31,27 @@ export const NewReviewModal = (props: NewReviewModalProps) => {
     }
   };
 
-  const onStarsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setStars(Number(event.target.value));
+  const onStarsChange = (newStars: number) => {
+    setStars(newStars);
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === "Enter") {
       submit();
     }
-  }
+  };
 
   useEffect(() => {
     setReview("");
     setStars(0);
   }, [props.visible]);
 
+  if (!visible) {
+    return null;
+  }
+
   return (
-    <div className={cn("modal new-rating-form", { "is-active": visible })}>
+    <div className={cn("modal new-rating-form is-active")}>
       <div className="modal-background"></div>
       <div className="modal-content">
         <div className="box">
@@ -57,17 +61,7 @@ export const NewReviewModal = (props: NewReviewModalProps) => {
               <label className="label">Rating</label>
               <div className="control">
                 <span className="icon-text rating-star">
-                  {new Array(5).fill(0).map((_, i) => {
-                    const value = 5 - i;
-                    return (
-                      <StarRadioButton
-                        checked={stars === value}
-                        value={value}
-                        onChange={onStarsChange}
-                        key={value}
-                      />
-                    );
-                  })}
+                  <StarSelector value={stars} onChange={onStarsChange} />
                 </span>
               </div>
             </div>
@@ -81,11 +75,13 @@ export const NewReviewModal = (props: NewReviewModalProps) => {
                   className="textarea"
                   name="review"
                   placeholder="Start typing..."
-                  onChange={event => setReview(event.target.value)}
+                  onChange={(event) => setReview(event.target.value)}
                   onKeyPress={handleKeyPress}
                 ></textarea>
               </div>
-              <p className="help"><em>* Press Enter to submit.</em></p>
+              <p className="help">
+                <em>* Press Enter to submit.</em>
+              </p>
             </div>
 
             <div className="actions has-text-centered field is-grouped">
@@ -119,28 +115,4 @@ interface NewReviewModalProps {
   visible: boolean;
   productId: string;
   closeModal: () => void;
-}
-
-const StarRadioButton = (props: StarRadioButtonProps) => {
-  return (
-    <>
-      <input
-        type="radio"
-        name="stars"
-        id={`rating-${props.value}`}
-        value={props.value}
-        checked={props.checked}
-        onChange={props.onChange}
-      />
-      <label htmlFor={`rating-${props.value}`} className="icon editable">
-        <i className="fas fa-star"></i>
-      </label>
-    </>
-  );
-};
-
-interface StarRadioButtonProps {
-  value: number;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  checked: boolean;
 }

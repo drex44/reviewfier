@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { ProductService } from "../../../service/productService";
-import { parseStarNumber } from "../../utils/commonUtils";
 import { RatingStars } from "../ratingStars";
 import { ProductDto } from "../types/product";
 
@@ -24,7 +23,7 @@ export const ProductList = () => {
               <div className="media-content">
                 <p className="title is-4">{product.name}</p>
                 <p className="subtitle is-6">
-                  <RatingStars stars={Number(product.avgStars)} leftText={parseStarNumber(product.avgStars)} />
+                  <RatingStars stars={product.avgStars} leftText={product.avgStars} />
                 </p>
               </div>
             </div>

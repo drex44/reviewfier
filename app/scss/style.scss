@@ -43,16 +43,15 @@
   }
   .new-rating-form {
     .rating-star {
-      direction: rtl;
-      input {
-        display: none;
-      }
-      input:checked ~ label,
-      input:checked ~ label ~ label,
-      input ~ label:hover,
-      input ~ label:hover ~ label {
-        color: #ffe400;
+      .icon {
+        margin: 0;
+        width: 9px;
+        overflow: hidden;
+        display: inline-block;
         cursor: pointer;
+      }
+      .icon:nth-of-type(even) {
+        direction: rtl;
       }
     }
     .actions {
