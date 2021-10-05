@@ -38,14 +38,18 @@
   .avg-stars {
     font-weight: 400;
   }
-  .review-stars {
+  .review-stars strong {
     font-weight: 500;
+  }
+  .rating-star label,
+  .rating-star .star.icon {
+    font-size: 1.5rem;
   }
   .new-rating-form {
     .rating-star {
       .icon {
         margin: 0;
-        width: 9px;
+        width: 14px;
         overflow: hidden;
         display: inline-block;
         cursor: pointer;
@@ -60,7 +64,7 @@
   }
   .product-reviews {
     .review {
-      margin-bottom: 0;
+      margin-bottom: 1rem;
 
       .review-stars {
         margin-right: 0.5rem;
@@ -70,12 +74,19 @@
 }
 
 .rating-star label,
-.star.icon {
+.rating-star .star.icon {
   color: #cecece;
+  margin: auto 0.075em;
 }
 .rating-star .icon.checked {
   color: #ffe400;
 }
 .rating-star .icon {
   width: auto;
+}
+.rating-star .leftText {
+  margin-right: 0.5rem;
+}
+.rating-star .rightText {
+  margin-left: 0.5rem;
 }

@@ -25,8 +25,11 @@ export const ProductInfo = (props: ProductInfoProps) => {
       <h1 className="title">{product.name}</h1>
       <div className="columns is-vcentered">
         <div className="column is-four-fifths">
-          <span className="title avg-stars">
-            <RatingStars stars={product.avgStars} leftText={product.avgStars} />
+          <span className="title avg-stars level-left">
+            <div className="level-item">{product.avgStars}</div>
+            <div className="level-item">
+              <RatingStars stars={product.avgStars} />
+            </div>
           </span>
         </div>
         <div className="column is-right">
