@@ -1,3 +1,4 @@
+import { renderHomePage } from "../react/pages/home";
 import { renderErrorPage } from "./pages/error";
 import { showPage } from "./pages/pageUtils";
 import { renderProductPage } from "./pages/product";
@@ -38,7 +39,7 @@ export class Router {
 
   static getRoutes() {
     return {
-      '': goToHomePage,
+      '': showHomePage,
       '#product': renderProductPage,
       '#error': renderErrorPage,
     }
@@ -47,5 +48,9 @@ export class Router {
 
 export function goToHomePage() {
   window.location.hash = "";
+}
+
+export function showHomePage() {
   showPage("home");
+  renderHomePage();
 }

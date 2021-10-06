@@ -10,7 +10,7 @@ import { WebSocketClient } from "../service/subscription";
 $(function () {
   Router.renderPage();
   Router.initApp();
-  $(".homeBtn").off().on("click", function (e) {
+  $("#error .homeBtn").off().on("click", function (e) {
     Router.render("/");
   });
   WebSocketClient.getInstance().connect();
