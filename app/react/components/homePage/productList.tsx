@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { ProductService } from "../../../service/productService";
+import React from "react";
 import { RatingStars } from "../ratingStars";
 import { ProductDto } from "../types/product";
 
-export const ProductList = () => {
-  const [products, setProducts] = useState<ProductDto[]>([]);
-
-  useEffect(() => {
-    ProductService.getAllProducts({ page: 0, pageSize: 0 }).then(setProducts);
-  }, []);
-
+export const ProductList = (props: ProductListProps) => {
   const openProductPage = (id: string) => {
     window.location.hash = "product/" + id;
   };
+
+  const {products = []} = props;
 
   return (
     <div className="product-list">
@@ -40,3 +35,7 @@ export const ProductList = () => {
     </div>
   );
 };
+
+interface ProductListProps {
+  products: ProductDto[]
+}
